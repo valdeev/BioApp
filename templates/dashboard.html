@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/custom-style.css">
+{% endblock %}
+
+{% block main %}
+    {% if session %}
+        <div class="container-card">
+            <h2 class="transition-up">En construccion... Bienvenido {{ user_name }}</h2>
+        </div>
+    {% endif %}
+
+{% endblock%}

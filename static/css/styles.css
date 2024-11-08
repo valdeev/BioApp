@@ -1,0 +1,15 @@
+.navbar {
+    background-color: #333333;
+}
+
+.container img { 
+    width: 22rem;
+}
+
+.nav-link {
+    color: white
+}
+
+.nav-item a:hover {
+    color: #c3c3c3;
+}

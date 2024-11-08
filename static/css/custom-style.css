@@ -1,0 +1,62 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden; /* Evita el scroll */
+    background-color: #e6e6e6;
+}
+
+.transition-up {
+    animation: load-up .3s;
+}
+
+h2 {
+    color: #333333;
+}
+
+.container-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.card {
+    width: 50%;
+    border: transparent;
+}
+
+.card input:focus {
+    border-color: none;
+}
+
+form {
+    padding: 2rem;
+    color:#333333
+}
+
+.btn {
+    background-color: #333333;
+    border: transparent;
+}
+
+.btn:active {
+    background-color: red;
+}
+
+.btn:hover {
+    background-color: #808080;
+}
+
+@keyframes load-up {
+    0% {
+        transform: translateY(10%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

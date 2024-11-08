@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/custom-style.css">
+{% endblock %}
+
+
+{% block main %}
+    <div class="container-card">
+        <div class="transition-up">
+            <h2>Bienvenido a BioApp</h2>
+        </div>
+        <div class="card transition-up">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Nombre de Usuario</label>
+                    <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" name="password" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Confirmar Contraseña</label>
+                    <input type="password" class="form-control" name="confirmation">
+                </div>
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </form>
+        </div>
+        {% if get_flashed_messages() %}
+            <div class="alert alert-danger mt-4 mb-0 text-center transition-up" role="alert">
+                {{ get_flashed_messages() | join(" ") }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock%}
