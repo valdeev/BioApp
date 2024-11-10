@@ -1,0 +1,85 @@
+{
+  "questions": [
+    {
+      "text": "¿Cómo reaccionas cuando te enfrentas a un conflicto en el trabajo?",
+      "answers": [
+        { "text": "Mantengo la calma y busco soluciones pacíficas.", "biotype": "Mediador", "points": 3 },
+        { "text": "Evito el conflicto a toda costa.", "biotype": "Prudente", "points": 3 },
+        { "text": "Me frustro rápidamente y tiendo a imponer mi punto de vista.", "biotype": "Ejecutivo", "points": 3 },
+        { "text": "Intento convencer a los demás con argumentos persuasivos.", "biotype": "Cautivador", "points": 3 }
+      ]
+    },
+    {
+      "text": "¿Qué sueles hacer en tu tiempo libre?",
+      "answers": [
+        { "text": "Medito o leo para encontrar paz interior.", "biotype": "Trascendental", "points": 2 },
+        { "text": "Busco actividades creativas como pintar o escribir.", "biotype": "Creativo", "points": 2 },
+        { "text": "Prefiero hacer planes y organizar mis proyectos.", "biotype": "Ejecutivo", "points": 2 },
+        { "text": "Disfruto socializando y conociendo gente nueva.", "biotype": "Cautivador", "points": 2 }
+      ]
+    },
+    {
+      "text": "Cuando te enfrentas a un problema complejo, ¿cómo lo manejas?",
+      "answers": [
+        { "text": "Busco soluciones prácticas y estructuradas.", "biotype": "Ejecutivo", "points": 4 },
+        { "text": "Analizo profundamente todas las opciones.", "biotype": "Investigador", "points": 4 },
+        { "text": "Confío en mi intuición para tomar decisiones.", "biotype": "Visionario", "points": 4 },
+        { "text": "Consulto con otros para obtener diferentes perspectivas.", "biotype": "Mediador", "points": 4 }
+      ]
+    },
+    {
+      "text": "¿Qué te motiva a la hora de trabajar en un proyecto?",
+      "answers": [
+        { "text": "Lograr resultados tangibles y exitosos.", "biotype": "Ejecutivo", "points": 3 },
+        { "text": "Explorar nuevas ideas y conceptos.", "biotype": "Creativo", "points": 3 },
+        { "text": "Ayudar a los demás y mantener un ambiente positivo.", "biotype": "Mediador", "points": 3 },
+        { "text": "Ser reconocido y apreciado por mi esfuerzo.", "biotype": "Cautivador", "points": 3 }
+      ]
+    },
+    {
+      "text": "En una reunión social, ¿cuál es tu papel habitual?",
+      "answers": [
+        { "text": "Escuchar y asegurarme de que todos se sientan cómodos.", "biotype": "Mediador", "points": 2 },
+        { "text": "Ser el centro de atención y animar la conversación.", "biotype": "Cautivador", "points": 2 },
+        { "text": "Observar y analizar a los demás desde la distancia.", "biotype": "Investigador", "points": 2 },
+        { "text": "Prefiero evitar grandes reuniones y pasar tiempo solo.", "biotype": "Prudente", "points": 2 }
+      ]
+    },
+    {
+      "text": "Cuando te sientes abrumado, ¿qué haces para relajarte?",
+      "answers": [
+        { "text": "Hago ejercicio o alguna actividad física.", "biotype": "Audaz", "points": 3 },
+        { "text": "Medito o practico técnicas de respiración.", "biotype": "Trascendental", "points": 3 },
+        { "text": "Me distraigo con actividades creativas.", "biotype": "Creativo", "points": 3 },
+        { "text": "Hablo con un amigo cercano para desahogarme.", "biotype": "Mediador", "points": 3 }
+      ]
+    },
+    {
+      "text": "¿Cómo te sientes al asumir el liderazgo de un equipo?",
+      "answers": [
+        { "text": "Me siento cómodo y disfruto liderar a los demás.", "biotype": "Ejecutivo", "points": 4 },
+        { "text": "Prefiero apoyar desde las sombras.", "biotype": "Prudente", "points": 4 },
+        { "text": "Solo lidero si es necesario, prefiero seguir a otros.", "biotype": "Mediador", "points": 4 },
+        { "text": "Me resulta emocionante y motivador.", "biotype": "Audaz", "points": 4 }
+      ]
+    },
+    {
+      "text": "¿Qué valoras más en una amistad?",
+      "answers": [
+        { "text": "Lealtad y confianza.", "biotype": "Protector", "points": 3 },
+        { "text": "Diversión y espontaneidad.", "biotype": "Cautivador", "points": 3 },
+        { "text": "Apoyo mutuo y comprensión.", "biotype": "Mediador", "points": 3 },
+        { "text": "Intereses intelectuales compartidos.", "biotype": "Investigador", "points": 3 }
+      ]
+    },
+    {
+      "text": "¿Cómo manejas la incertidumbre en tu vida?",
+      "answers": [
+        { "text": "Me mantengo flexible y me adapto rápidamente.", "biotype": "Audaz", "points": 3 },
+        { "text": "Planifico para tener control sobre las cosas.", "biotype": "Ejecutivo", "points": 3 },
+        { "text": "Confío en que las cosas sucederán como deben.", "biotype": "Trascendental", "points": 3 },
+        { "text": "Me preocupo mucho y me cuesta tomar decisiones.", "biotype": "Prudente", "points": 3 }
+      ]
+    }
+  ]
+}
