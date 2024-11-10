@@ -1,4 +1,5 @@
 import json
+import os
 from flask import Flask, render_template, flash, request, redirect, session, url_for, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
 from models import db, User, Question, Answer, Result
@@ -12,8 +13,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///biodb.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+PREGUNTAS_FILE = os.path.join(BASE_DIR, 'preguntas.json')
 
-with open('preguntas.json') as f:
+with open(PREGUNTAS_FILE) as f:
     questions_data = json.load(f)
 
 @app.after_request
@@ -88,9 +91,8 @@ def dashboard():
     
     # Obtener las preguntas desde la base de datos
     questions = Question.query.all()
+    return render_template("dashboard.html", questions=questions)
     
-    return render_template("dashboard.html", user_name=session['username'], questions=questions)
-
 
 @app.route('/submit', methods=['POST'])
 def submit_answers():
