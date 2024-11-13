@@ -86,13 +86,19 @@ def register():
 @app.route("/dashboard")
 def dashboard():
     # Verificar si el usuario está autenticado
-    if "username" not in session:
+    if "username" in session:
+            return render_template("dashboard.html", user_name=session["username"])
+    else:
         return redirect(url_for('login'))
-    
-    # Obtener las preguntas desde la base de datos
+
+
+
+@app.route("/biotypes")
+def biotypes():
     questions = Question.query.all()
-    return render_template("dashboard.html", questions=questions)
+    return render_template("biotypes.html", questions=questions)
     
+
 
 @app.route('/submit', methods=['POST'])
 def submit_answers():
@@ -113,7 +119,6 @@ def submit_answers():
             "Protector": 0,
             "Visionario": 0
         }
-
 
         # Calcular puntuaciones en función de las respuestas del usuario
         for response in data['responses']:
