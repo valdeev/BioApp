@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block css %} 
+    <link rel="stylesheet" href="/static/css/custom-style.css">
+{% endblock %}
+{% block main %}
+    <div class="container-card">
+        <form id="questionnaire">
+            {% for question in questions %}
+                <h3 id="question">{{ question.text }}</h3>
+                {% set answers = question.answers %}
+                {% if answers %}
+                    {% for answer in answers %}
+                        <label>
+                            <input type="radio" name="{{ question.question_id }}" value="{{ answer.biotype }}" data-points="{{ answer.points }}">
+                            {{ answer.text }}
+                        </label><br>
+                    {% endfor %}
+                {% else %}
+                    <p>No answers available</p>
+                {% endif %}
+            {% endfor %}
+            <button type="button" onclick="submitAnswers()">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block js %}
+        <script src="/static/js/script.js"></script>
+{% endblock %}

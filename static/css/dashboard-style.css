@@ -1,0 +1,24 @@
+
+.cards a {
+    width: 10rem;
+    height: 10rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Espacio entre los elementos */;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    background-color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #333333;
+    transition: all .2s;
+}
+
+.card-efect:hover {
+    transform: translateY(-2px);
+    -webkit-box-shadow: -7px 9px 19px -7px rgba(51,51,51,0.32);
+    -moz-box-shadow: -7px 9px 19px -7px rgba(51,51,51,0.32);
+    box-shadow: -7px 9px 19px -7px rgba(51,51,51,0.32);
+}

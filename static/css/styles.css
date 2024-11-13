@@ -1,5 +1,14 @@
+* {
+  font-family: "Host Grotesk", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
+}
+
 .navbar {
     background-color: #333333;
+    position: absolute;
+    width: 100%;
 }
 
 .container img { 
