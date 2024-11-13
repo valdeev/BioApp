@@ -87,10 +87,22 @@ def register():
 def dashboard():
     # Verificar si el usuario está autenticado
     if "username" in session:
-            return render_template("dashboard.html", user_name=session["username"])
+            biotipoId = User.query.filter_by(username=session["username"]).first()
+            biotipo = Result.query.filter_by(user_id=biotipoId.id).first()
+            waitingBiotype = "..."
+            if biotipo is None:
+                return render_template("dashboard.html", user_name=session["username"], biotipo=waitingBiotype)
+            else:
+                return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype)
     else:
         return redirect(url_for('login'))
 
+
+@app.route('/questions')
+def get_preguntas():
+    with open('preguntas.json', 'r', encoding='utf-8') as file:
+        questions = json.load(file)
+    return jsonify(questions)
 
 
 @app.route("/biotypes")

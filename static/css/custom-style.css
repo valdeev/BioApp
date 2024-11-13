@@ -34,18 +34,6 @@ form {
     color:#333333
 }
 
-.btn {
-    background-color: #333333;
-    border: transparent;
-}
-
-.btn:active {
-    background-color: red;
-}
-
-.btn:hover {
-    background-color: #808080;
-}
 
 @keyframes load-up {
     0% {

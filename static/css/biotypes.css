@@ -1,0 +1,81 @@
+body {
+    overflow: hidden;
+}
+
+.app {
+    background-color: white;
+    width: 90%;
+    max-width: 600px;
+    margin: 100px auto 0;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.quiz {
+    padding: 20px 0;
+}
+
+.quiz h1 {
+    font-weight: 25px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 30px;
+}
+
+.quiz h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.btn {
+    width: 100%;
+    border: 1px solid #333;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: left;
+    border-radius: 4px;
+}
+
+.btn:hover {
+    background-color: #c3c3c3;
+}
+
+#next-btn {
+    background-color: #333;
+    color: #fff;
+    width: 150px;
+    border: 1px solid #333;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    font-weight: 500;
+    display: block;
+}
+
+.btn.selected {
+    background-color: #333; /* Color de fondo resaltado */
+    color: white;
+    border-color: #333;
+}
+
+.finaltest {
+    padding: 20px 0;
+    text-align: center;
+}
+
+.finaltest h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.finaltest a {
+    background-color: #333;
+    color: #fff;
+    width: 150px;
+    border: 1px solid #333;
+    padding: 10px;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    font-weight: 500;
+    display: block;
+    text-align: center;
+}
