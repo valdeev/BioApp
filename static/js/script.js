@@ -18,10 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-  
+
     nextButton.style.display = "none";
     finaltest.style.display = "none"
-    
+
 
     loadQuestions();
 
@@ -43,8 +43,6 @@ async function loadQuestions() {
     try {
         const response = await fetch('/questions');
         preguntas = await response.json();
-        console.log("Preguntas cargadas:", preguntas.questions[0]);
-
         showQuestion();
     } catch (error) {
         console.error("Error al cargar el archivo JSON:", error);
@@ -53,11 +51,11 @@ async function loadQuestions() {
 
 
 function showQuestion() {
-    answerButtonsElement.innerHTML = ""; 
+    answerButtonsElement.innerHTML = "";
 
     const currentQuestion = preguntas.questions[currentQuestionIndex];
 
-   
+
     if (!currentQuestion) {
         console.error(`No se encontró la pregunta en el índice ${currentQuestionIndex}`);
         return;

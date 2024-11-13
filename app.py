@@ -99,24 +99,27 @@ def dashboard():
 
 
 @app.route('/questions')
-def get_preguntas():
-    with open('preguntas.json', 'r', encoding='utf-8') as file:
-        questions = json.load(file)
-    return jsonify(questions)
+def questions():
+    try:
+        with open(PREGUNTAS_FILE) as f:
+            questions_data = json.load(f)
+        return jsonify(questions_data)  # Devuelve las preguntas como JSON
+    except FileNotFoundError:
+        return jsonify({"error": "Archivo no encontrado"}), 500
 
 
 @app.route("/biotypes")
 def biotypes():
     questions = Question.query.all()
     return render_template("biotypes.html", questions=questions)
-    
+
 
 
 @app.route('/submit', methods=['POST'])
 def submit_answers():
     if "username" not in session:
         return jsonify({"error": "User not authenticated"}), 401
-    
+
     try:
         data = request.json
         scores = {
@@ -155,7 +158,7 @@ def submit_answers():
             "biotype": predominant_biotype,
             "scores": scores
         })
-    
+
     except Exception as e:
         print("Error:", e)
         return jsonify({"error": str(e)}), 500
