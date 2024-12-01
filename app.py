@@ -88,20 +88,30 @@ def register():
 
 @app.route("/dashboard")
 def dashboard():
-    if "username" in session:
-            biotipoId = User.query.filter_by(username=session["username"]).first()
-            biotipo = Result.query.filter_by(user_id=biotipoId.id).first()
-            estado = UserStateHistory.query.filter_by(user_id=biotipoId.id).first()
-            if biotipo is None and estado is None:
-                return render_template("dashboard.html", user_name=session["username"], biotipo="...", estado="...")
-            elif biotipo is None:
-                return render_template("dashboard.html", user_name=session["username"], biotipo="...", estado=estado.estado)
-            elif estado is None:
-                return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype, estado="...")
-            else:
-                return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype, estado=estado.estado)
-    else:
+    if "username" not in session:
         return redirect(url_for('login'))
+
+    # Obtener el usuario basado en el username
+    biotipoId = User.query.filter_by(username=session["username"]).first()
+
+    # Si el usuario no existe en la base de datos, redirige al login
+    if biotipoId is None:
+        return redirect(url_for('login'))
+
+    # Consultar biotipo y estado
+    biotipo = Result.query.filter_by(user_id=biotipoId.id).first()
+    estado = UserStateHistory.query.filter_by(user_id=biotipoId.id).first()
+
+    # Lógica de renderizado según la existencia de biotipo y estado
+    if biotipo is None and estado is None:
+        return render_template("dashboard.html", user_name=session["username"], biotipo="...", estado="...")
+    elif biotipo is None:
+        return render_template("dashboard.html", user_name=session["username"], biotipo="...", estado=estado.estado)
+    elif estado is None:
+        return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype, estado="...")
+    else:
+        return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype, estado=estado.estado)
+
 
 
 @app.route('/questions')
