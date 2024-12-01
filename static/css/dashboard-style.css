@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     text-decoration: none;
+    text-align: center;
     background-color: white;
     border-radius: 10px;
     font-size: 20px;
@@ -16,7 +17,7 @@
     transition: all .2s;
 }
 
-.card-efect:hover {
+.card-effect:hover {
     transform: translateY(-2px);
     -webkit-box-shadow: -7px 9px 19px -7px rgba(51,51,51,0.32);
     -moz-box-shadow: -7px 9px 19px -7px rgba(51,51,51,0.32);

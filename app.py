@@ -2,7 +2,8 @@ import json
 import os
 from flask import Flask, render_template, flash, request, redirect, session, url_for, jsonify
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, Question, Answer, Result
+from flask_migrate import Migrate
+from models import db, User, Question, Answer, Result, UserStateHistory
 
 app = Flask(__name__)
 app.config["SESSION_PERMANENT"] = False
@@ -13,8 +14,10 @@ app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///biodb.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
+migrate = Migrate(app, db)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PREGUNTAS_FILE = os.path.join(BASE_DIR, 'preguntas.json')
+PHRASES_FILE = os.path.join(BASE_DIR, 'frases.json')
 
 with open(PREGUNTAS_FILE) as f:
     questions_data = json.load(f)
@@ -85,33 +88,38 @@ def register():
 
 @app.route("/dashboard")
 def dashboard():
-    # Verificar si el usuario está autenticado
     if "username" in session:
             biotipoId = User.query.filter_by(username=session["username"]).first()
             biotipo = Result.query.filter_by(user_id=biotipoId.id).first()
-            waitingBiotype = "..."
-            if biotipo is None:
-                return render_template("dashboard.html", user_name=session["username"], biotipo=waitingBiotype)
+            estado = UserStateHistory.query.filter_by(user_id=biotipoId.id).first()
+            if biotipo is None and estado is None:
+                return render_template("dashboard.html", user_name=session["username"], biotipo="...", estado="...")
+            elif biotipo is None:
+                return render_template("dashboard.html", user_name=session["username"], biotipo="...", estado=estado.estado)
+            elif estado is None:
+                return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype, estado="...")
             else:
-                return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype)
+                return render_template("dashboard.html", user_name=session["username"], biotipo=biotipo.biotype, estado=estado.estado)
     else:
         return redirect(url_for('login'))
 
 
 @app.route('/questions')
 def questions():
-    try:
-        with open(PREGUNTAS_FILE) as f:
-            questions_data = json.load(f)
-        return jsonify(questions_data)  # Devuelve las preguntas como JSON
-    except FileNotFoundError:
-        return jsonify({"error": "Archivo no encontrado"}), 500
+    if "username" in session:
+        try:
+            with open(PREGUNTAS_FILE) as f:
+                questions_data = json.load(f)
+            return jsonify(questions_data)
+        except FileNotFoundError:
+            return jsonify({"error": "Archivo no encontrado"}), 500
 
 
 @app.route("/biotypes")
 def biotypes():
-    questions = Question.query.all()
-    return render_template("biotypes.html", questions=questions)
+    if "username" in session:
+        questions = Question.query.all()
+        return render_template("biotypes.html", questions=questions)
 
 
 
@@ -135,21 +143,16 @@ def submit_answers():
             "Visionario": 0
         }
 
-        # Calcular puntuaciones en función de las respuestas del usuario
         for response in data['responses']:
             scores[response['biotype']] += response['points']
 
-        # Determinar el biotipo predominante
         predominant_biotype = max(scores, key=scores.get)
-
-        # Obtener el usuario actual
         username = session['username']
         user = User.query.filter_by(username=username).first()
 
         if not user:
             return jsonify({"error": "User not found"}), 404
 
-        # Guardar el resultado en la base de datos
         result = Result(user_id=user.id, biotype=predominant_biotype, total_score=scores[predominant_biotype])
         db.session.add(result)
         db.session.commit()
@@ -163,6 +166,53 @@ def submit_answers():
         print("Error:", e)
         return jsonify({"error": str(e)}), 500
 
+
+@app.route('/phrases')
+def phrases():
+    try:
+        with open(PHRASES_FILE) as f:
+            phrases_data = json.load(f)
+        return jsonify(phrases_data)
+    except FileNotFoundError:
+        return jsonify({"error": "Archivo no encontrado"}), 500
+
+
+@app.route("/analysis")
+def analysis():
+    if "username" not in session:
+        return redirect(url_for('login'))
+    return render_template("analysis.html")
+
+
+@app.route('/save_results', methods=['POST'])
+def save_results():
+    try:
+        data = request.json
+        left_score = data.get('left')
+        right_score = data.get('right')
+        id_user = User.query.filter_by(username=session["username"]).first()
+        user_id = id_user.id
+
+        if user_id is None or left_score is None or right_score is None:
+            return jsonify({'error': 'Faltan datos'}), 400
+
+        # Determinar el estado
+        if left_score > right_score:
+            estado = 'extrovertido'
+        elif right_score > left_score:
+            estado = 'introvertido'
+        else:
+            estado = 'neutral'
+
+        new_state = UserStateHistory(user_id=user_id, estado=estado)
+        db.session.add(new_state)
+        db.session.commit()
+
+        return jsonify({'message': 'Resultados guardados correctamente', 'estado': estado}), 200
+
+    except Exception as e:
+        db.session.rollback()
+        return jsonify({'error': f'Ocurrió un error: {str(e)}'}), 500
 
 
 @app.route("/logout")

@@ -3,7 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
-# Modelo de usuario (conserva el original)
+
 class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
@@ -17,7 +17,6 @@ class User(db.Model):
         return check_password_hash(self.password_hash, password)
 
 
-# Modelo para preguntas
 class Question(db.Model):
     __tablename__ = 'questions'
     question_id = db.Column(db.Integer, primary_key=True)
@@ -34,12 +33,19 @@ class Answer(db.Model):
     points = db.Column(db.Integer)
 
 
-
-# Modelo para almacenar los resultados de los usuarios
 class Result(db.Model):
     __tablename__ = 'results'
     result_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     biotype = db.Column(db.String(50))
     total_score = db.Column(db.Integer)
+    date = db.Column(db.DateTime, default=db.func.current_timestamp())
+
+
+
+class UserStateHistory(db.Model):
+    __tablename__ = 'user_state_history'
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    estado = db.Column(db.String(20), nullable=False)
     date = db.Column(db.DateTime, default=db.func.current_timestamp())

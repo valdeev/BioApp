@@ -5,22 +5,22 @@
     <link rel="stylesheet" href="/static/css/custom-style.css">
 {% endblock %}
 {% block main %}
-<div class="container-card">
-    <div class="app transition-up">
-        <div class="quiz" id="quiz">
-            <h1>Biotipo</h1>
-            <div class="question">
-                <h2 id="question">Pregunta</h2>
-                <div id="answer-buttons" class="answer-buttons"></div>
-                <button id="next-btn">Siguiente</button>
+    <div class="container-card">
+        <div class="app transition-up">
+            <div class="quiz" id="quiz">
+                <h1>Biotipo</h1>
+                <div class="question">
+                    <h2 id="question">Pregunta</h2>
+                    <div id="answer-buttons" class="answer-buttons"></div>
+                    <button id="next-btn">Siguiente</button>
+                </div>
+            </div>
+            <div class="finaltest transition-up" id="finaltest">
+                <h2>Has realizado el test! </h2>
+                <a class="btn" href="/dashboard">Dashboard</a>
             </div>
         </div>
-        <div class="finaltest transition-up" id="finaltest">
-            <h2>Has realizado el test! </h2>
-            <a class="btn" href="/dashboard">Dashboard</a>
-        </div>
     </div>
-</div>
 {% endblock %}
 
 {% block js %}

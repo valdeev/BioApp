@@ -10,11 +10,17 @@
         <div class="container-card">
             <h2 class="transition-up">Bienvenido {{ user_name }}</h2>
             <div class="cards transition-up d-flex flex-wrap flex-md-nowrap justify-content-center">
-                <a href="/biotypes" class="m-2 card-efect">
+                <a href="/biotypes" class="m-2 card-effect">
                     Biotipos
                 </a>
-                <a class="m-2 card-efect">
+                <a class="m-2 card-effect">
                     <b>{{ biotipo }}</b>
+                </a>
+                <a href="/analysis" class="m-2 card-effect">Cuadro de mando</a>
+            </div>
+            <div class="cards transition-up d-flex">
+                <a class="m-2 card-effect">
+                    <b>{{ estado }}</b>
                 </a>
             </div>
         </div>
@@ -22,5 +28,5 @@
 {% endblock%}
 
 {% block js %}
-
+        
 {% endblock %}

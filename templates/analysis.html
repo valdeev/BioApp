@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block css %}
+    <link rel="stylesheet" href="/static/css/custom-style.css">
+    <link rel="stylesheet" href="/static/css/biotypes.css">
+    <link rel="stylesheet" href="/static/css/analysis.css">
+{% endblock %}
+
+{% block main %}
+    <div class="container-card">
+        <div class="app transition-up">
+            <div class="quiz" id="quiz">
+                <h1>Cuadro de mando</h1>
+                <div class="question">
+                    <h2 id="question">Asignale un valor a las frases de acuerdo a lo que sientas identificad@, siendo 6 "me siento muy identificado" y 1 "me siento poco identificado".</h2>
+                    <div id="answer-buttons" class="answer-buttons">
+                        <div class="d-flex justify-content-center">
+                            <button class="m-2 range-button">1</button>
+                            <button class="m-2 range-button">2</button>
+                            <button class="m-2 range-button">3</button>
+                            <button class="m-2 range-button">4</button>
+                            <button class="m-2 range-button">5</button>
+                            <button class="m-2 range-button selected">6</button>
+                        </div>
+                    </div>
+                    <button id="start-test">Iniciar test</button>
+                    <button id="next-btn">Siguiente</button>
+                </div>
+            </div>
+            <div class="finaltest transition-up" id="finaltest">
+                <h2>Has realizado el test! </h2>
+                <a class="btn" href="/dashboard">Dashboard</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block js %}
+    <script src="/static/js/analysis.js"></script>
+{% endblock %}
