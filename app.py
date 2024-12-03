@@ -23,6 +23,7 @@ PHRASES_FILE = os.path.join(BASE_DIR, 'frases.json')
 with open(PREGUNTAS_FILE) as f:
     questions_data = json.load(f)
 
+
 @app.after_request
 def after_request(response):
     response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -30,6 +31,11 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+@app.route('/create_tables')
+def create_tables():
+    with app.app_context():
+        db.create_all()
+    return "Tablas creadas correctamente."
 
 @app.route("/")
 def index():
