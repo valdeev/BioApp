@@ -31,11 +31,6 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-@app.route('/create_tables')
-def create_tables():
-    with app.app_context():
-        db.create_all()
-    return "Tablas creadas correctamente."
 
 @app.route("/")
 def index():
