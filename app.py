@@ -15,6 +15,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
 migrate = Migrate(app, db)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PREGUNTAS_FILE = os.path.join(BASE_DIR, 'preguntas.json')
 PHRASES_FILE = os.path.join(BASE_DIR, 'frases.json')
@@ -208,11 +209,11 @@ def save_results():
 
         # Determinar el estado
         if left_score > right_score:
-            estado = 'extrovertido'
+            estado = 'Extrovertido'
         elif right_score > left_score:
-            estado = 'introvertido'
+            estado = 'Introvertido'
         else:
-            estado = 'neutral'
+            estado = 'Neutral'
 
         new_state = UserStateHistory(user_id=user_id, estado=estado)
         db.session.add(new_state)
